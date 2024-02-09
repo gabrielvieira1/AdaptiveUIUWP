@@ -10,6 +10,26 @@
     d:DesignWidth="400">
 
     <Grid>
+    <VisualStateManager.VisualStateGroups>
+      <VisualStateGroup>
+        <VisualState x:Name="Width360">
+          <VisualState.Setters>
+            <Setter Target="FavText.(RelativePanel.Below)" Value="{x:Null}" />
+            <Setter Target="FavText.(RelativePanel.RightOf)" Value="Stars" />
+            <Setter Target="FavText.(RelativePanel.AlignVerticalCenterWith)" Value="Stars" />
+            <Setter Target="Stars.(RelativePanel.AlignVerticalCenterWithPanel)" Value="True" />
+          </VisualState.Setters>
+        </VisualState>
+        <VisualState x:Name="Width0">
+          <VisualState.Setters>
+            <Setter Target="FavText.(RelativePanel.RightOf)" Value="{x:Null}" />
+            <Setter Target="FavText.(RelativePanel.Below)" Value="Stars" />
+            <Setter Target="FavText.(RelativePanel.AlignVerticalCenterWith)" Value="{x:Null}" />
+            <Setter Target="Stars.(RelativePanel.AlignVerticalCenterWithPanel)" Value="False" />
+          </VisualState.Setters>
+        </VisualState>
+      </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
     <RelativePanel>
       <StackPanel Orientation="Horizontal" x:Name="Stars" RelativePanel.AlignVerticalCenterWithPanel="True">
         <SymbolIcon Margin="4" Foreground="Yellow" Symbol="Favorite"/>

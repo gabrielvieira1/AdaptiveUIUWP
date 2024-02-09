@@ -34,18 +34,27 @@ namespace App1
       var Width = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().VisibleBounds.Width;
       if (Width >= 720)
       {
-        SView.DisplayMode = SplitViewDisplayMode.CompactInline;
-        SView.IsPaneOpen = true;
+        //SView.DisplayMode = SplitViewDisplayMode.CompactInline;
+        //SView.IsPaneOpen = true;
+
+        VisualStateManager.GoToState(this, "Width720", false);
+
       }
       else if (Width >= 360)
       {
-        SView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
-        SView.IsPaneOpen = false;
+        //SView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
+        //SView.IsPaneOpen = false;
+
+        VisualStateManager.GoToState(this, "Width360", false);
+
       }
       else
       {
-        SView.DisplayMode = SplitViewDisplayMode.Overlay;
-        SView.IsPaneOpen = false;
+        //SView.DisplayMode = SplitViewDisplayMode.Overlay;
+        //SView.IsPaneOpen = false;
+
+        VisualStateManager.GoToState(this, "Width0", false);
+
       }
     }
 

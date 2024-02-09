@@ -9,6 +9,28 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
   <Grid>
+    <VisualStateManager.VisualStateGroups>
+      <VisualStateGroup>
+        <VisualState x:Name="Width720">
+          <VisualState.Setters>
+            <Setter Target="SView.DisplayMode" Value="CompactInline" />
+            <Setter Target="SView.IsPaneOpen" Value="True" />
+          </VisualState.Setters>
+        </VisualState>
+        <VisualState x:Name="Width360">
+          <VisualState.Setters>
+            <Setter Target="SView.DisplayMode" Value="CompactOverlay" />
+            <Setter Target="SView.IsPaneOpen" Value="False" />
+          </VisualState.Setters>
+        </VisualState>
+        <VisualState x:Name="Width0">
+          <VisualState.Setters>
+            <Setter Target="SView.DisplayMode" Value="Overlay" />
+            <Setter Target="SView.IsPaneOpen" Value="False" />
+          </VisualState.Setters>
+        </VisualState>
+      </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
       <RowDefinition/>

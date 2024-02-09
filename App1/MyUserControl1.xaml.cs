@@ -28,21 +28,27 @@ namespace App1
     private void MyUserControl1_VisibleBoundsChanged(Windows.UI.ViewManagement.ApplicationView sender, object args)
     {
       var Width = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().VisibleBounds.Width;
-      if (Width >= 320)
+      if (Width >= 360)
       {
-        RelativePanel.SetBelow(FavText, null);
-        RelativePanel.SetRightOf(FavText, Stars);
+        //RelativePanel.SetBelow(FavText, null);
+        //RelativePanel.SetRightOf(FavText, Stars);
 
-        RelativePanel.SetAlignVerticalCenterWith(FavText, Stars);
-        RelativePanel.SetAlignVerticalCenterWithPanel(FavText, true);
+        //RelativePanel.SetAlignVerticalCenterWith(FavText, Stars);
+        //RelativePanel.SetAlignVerticalCenterWithPanel(FavText, true);
+
+        VisualStateManager.GoToState(this, "Width360", false);
+
       }
       else
       {
-        RelativePanel.SetRightOf(FavText, null);
-        RelativePanel.SetBelow(FavText, Stars);
+        //RelativePanel.SetRightOf(FavText, null);
+        //RelativePanel.SetBelow(FavText, Stars);
 
-        RelativePanel.SetAlignVerticalCenterWith(FavText, null);
-        RelativePanel.SetAlignVerticalCenterWithPanel(Stars, false);
+        //RelativePanel.SetAlignVerticalCenterWith(FavText, null);
+        //RelativePanel.SetAlignVerticalCenterWithPanel(Stars, false);
+
+        VisualStateManager.GoToState(this, "Width0", false);
+
       }
     }
   }
