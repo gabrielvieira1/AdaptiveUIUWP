@@ -26,41 +26,82 @@ namespace App1
     {
       this.InitializeComponent();
       Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 320));
-      Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().VisibleBoundsChanged += MainPage_VisibleBoundsChanged; ;
+      //Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().VisibleBoundsChanged += MainPage_VisibleBoundsChanged;
     }
 
-    private void MainPage_VisibleBoundsChanged(Windows.UI.ViewManagement.ApplicationView sender, object args)
-    {
-      var Width = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().VisibleBounds.Width;
-      if (Width >= 720)
-      {
-        //SView.DisplayMode = SplitViewDisplayMode.CompactInline;
-        //SView.IsPaneOpen = true;
+    //private void MainPage_VisibleBoundsChanged(Windows.UI.ViewManagement.ApplicationView sender, object args)
+    //{
+    //  var Width = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().VisibleBounds.Width;
+    //  if (Width >= 720)
+    //  {
+    //    //SView.DisplayMode = SplitViewDisplayMode.CompactInline;
+    //    //SView.IsPaneOpen = true;
 
-        VisualStateManager.GoToState(this, "Width720", false);
+    //    VisualStateManager.GoToState(this, "Width720", false);
 
-      }
-      else if (Width >= 360)
-      {
-        //SView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
-        //SView.IsPaneOpen = false;
+    //  }
+    //  else if (Width >= 360)
+    //  {
+    //    //SView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
+    //    //SView.IsPaneOpen = false;
 
-        VisualStateManager.GoToState(this, "Width360", false);
+    //    VisualStateManager.GoToState(this, "Width360", false);
 
-      }
-      else
-      {
-        //SView.DisplayMode = SplitViewDisplayMode.Overlay;
-        //SView.IsPaneOpen = false;
+    //  }
+    //  else
+    //  {
+    //    //SView.DisplayMode = SplitViewDisplayMode.Overlay;
+    //    //SView.IsPaneOpen = false;
 
-        VisualStateManager.GoToState(this, "Width0", false);
+    //    VisualStateManager.GoToState(this, "Width0", false);
 
-      }
-    }
+    //  }
+    //}
 
     private void Button_CLick(object sender, RoutedEventArgs e)
     {
       SView.IsPaneOpen = !SView.IsPaneOpen;
+    }
+  }
+  public class WindowWidthAdaptiveTrigger : StateTriggerBase
+  {
+    public WindowWidthAdaptiveTrigger()
+    {
+      var CoreWindow = Windows.UI.Core.CoreWindow.GetForCurrentThread();
+      if (CoreWindow == null)
+        return;
+
+      CoreWindow.SizeChanged += (s, e) => AssessTrigger(e.Size);
+    }
+
+    private double _MinWindowWidth;
+
+    public double MinWindowWidth
+    {
+      get { return _MinWindowWidth; }
+      set
+      {
+        if (_MinWindowWidth == value)
+          return;
+        _MinWindowWidth = value;
+
+        var CoreWindow = Windows.UI.Core.CoreWindow.GetForCurrentThread();
+        if (CoreWindow == null)
+          return;
+        var Bounds = CoreWindow.Bounds;
+        AssessTrigger(new Size(Bounds.Right - Bounds.Left, Bounds.Bottom - Bounds.Top));
+      }
+    }
+
+    bool _IsActive = false;
+    private void AssessTrigger(Size s)
+    {
+      var IsActive = s.Width >= _MinWindowWidth;
+      if (_IsActive != IsActive)
+      {
+        _IsActive = IsActive;
+        base.SetActive(IsActive);
+      }
     }
   }
 }

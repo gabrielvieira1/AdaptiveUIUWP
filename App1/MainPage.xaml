@@ -12,18 +12,27 @@
     <VisualStateManager.VisualStateGroups>
       <VisualStateGroup>
         <VisualState x:Name="Width720">
+          <VisualState.StateTriggers>
+            <local:WindowWidthAdaptiveTrigger MinWindowWidth="720"/>
+          </VisualState.StateTriggers>
           <VisualState.Setters>
             <Setter Target="SView.DisplayMode" Value="CompactInline" />
             <Setter Target="SView.IsPaneOpen" Value="True" />
           </VisualState.Setters>
         </VisualState>
         <VisualState x:Name="Width360">
+          <VisualState.StateTriggers>
+            <AdaptiveTrigger MinWindowWidth="360"/>
+          </VisualState.StateTriggers>
           <VisualState.Setters>
             <Setter Target="SView.DisplayMode" Value="CompactOverlay" />
             <Setter Target="SView.IsPaneOpen" Value="False" />
           </VisualState.Setters>
         </VisualState>
         <VisualState x:Name="Width0">
+          <VisualState.StateTriggers>
+            <AdaptiveTrigger MinWindowWidth="1"/>
+          </VisualState.StateTriggers>
           <VisualState.Setters>
             <Setter Target="SView.DisplayMode" Value="Overlay" />
             <Setter Target="SView.IsPaneOpen" Value="False" />
