@@ -42,10 +42,14 @@
         </Grid>
       </SplitView.Pane>
       <ListBox>
+        <!--<TextBlock FontSize="40" Text="Hello there, World!" />
         <TextBlock FontSize="40" Text="Hello there, World!" />
         <TextBlock FontSize="40" Text="Hello there, World!" />
-        <TextBlock FontSize="40" Text="Hello there, World!" />
-        <TextBlock FontSize="40" Text="Hello there, World!" />
+        <TextBlock FontSize="40" Text="Hello there, World!" />-->
+        <local:MyUserControl1/>
+        <local:MyUserControl1/>
+        <local:MyUserControl1/>
+        <local:MyUserControl1/>
       </ListBox>
     </SplitView>
   </Grid>
